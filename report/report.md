@@ -100,7 +100,6 @@ Każdy z eksperymentów został wykonany 20 razy.
 Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
 ![same_node_shm_sync](imgs/same_node_shm_sync.png)
 
-
 ### Przepustowość i komunikacja nieblokująca - przez pamięć współdzieloną, jeden host
 Każdy z eksperymentów został wykonany 20 razy.
 Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
@@ -116,6 +115,18 @@ Każdy z eksperymentów został wykonany 8 razy.
 Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
 ![same_node_tcp_async](imgs/same_node_tcp_async.png)
 
+
+### Opóźnienie
+
+Każdy z eksperymentów został wykonany 100 razy.
+Miało to na celu zminimalizowanie wpływu innych czynników na wyniki.
+
+| Rodzaj komunikacji | Sposób wymiany danych | Średnia `[ns]` | Minimum `[ns]` | Maximum `[ns]` | Ilość Prób |
+| ------------------ | --------------------- | -------------- | -------------- | -------------- | ---------- |
+| blokująca          | pamięć współdzielona  | 685,33         | 628            | 1013           | 100        |
+| nieblokująca       | pamięć współdzielona  | 493,61         | 461            | 719            | 100        |
+| blokująca          | sieć                  | 34085,63       | 31285          | 39010          | 100        |
+| nieblokująca       | sieć                  | 24614,82       | 23173          | 25809          | 100        |
 
 Wnioski i podsumowanie
 ---
