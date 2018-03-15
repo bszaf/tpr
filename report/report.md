@@ -130,3 +130,11 @@ Miało to na celu zminimalizowanie wpływu innych czynników na wyniki.
 
 Wnioski i podsumowanie
 ---
+ - Komunikacja przy użyciu pamięci współdzielonej jest wyraźnie wydajniejsza niż przy wykorzystaniu sieci.
+ - Rozmiar przesyłanych komunikatów ma wpływ na przepustowość.
+   Najmniejsze porcje danych wyraźnie zmniejszają przepustowość.
+   Wraz ze wzrostem rozmiaru danych wydajność ulega poprawie.
+ - W przypadku większych porcji danych, w komunikacji wykorzystującej pamięć współdzieloną, można zaobserować duże fluktuacje.
+   Może to wynikać z osiągnięcia "limitu" przepustowości, wyznaczonego przez architekturę MPI i inne czynniki niezależne (np. scheduler systemowy).
+ - Komunikacja nieblokująca pozwala na osiągnięcie nieznacznie większej przepustowości.
+ - Komunikacja nieblokująca umożliwa wyraźnie szybsze przesyłanie wiadomości o małym rozmiarze.
