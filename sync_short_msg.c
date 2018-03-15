@@ -26,10 +26,10 @@ int main(int argc, char** argv) {
 
   if (world_size < 2) {
     fprintf(stderr, "World size must be greater than 1 for %s\n", argv[0]);
-    MPI_Abort(MPI_COMM_WORLD, 1); 
+    MPI_Abort(MPI_COMM_WORLD, 1);
   }
 
-  int number_of_tranfers = 10000;
+  int number_of_transfers = 10000;
   if (world_rank == 0) {
     long send_msg;
     long recv_msg;
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     MPI_Barrier(MPI_COMM_WORLD);
     send_msg = get_current_timestamp();
     // int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
-    for(int i = 0; i < number_of_tranfers; i++) {
+    for(int i = 0; i < number_of_transfers; i++) {
       MPI_Send(&send_msg, 1, MPI_LONG, 1, tag, MPI_COMM_WORLD);
       MPI_Recv(&recv_msg, 1, MPI_LONG, 1, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
@@ -47,12 +47,12 @@ int main(int argc, char** argv) {
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    for(int i = 0; i < number_of_tranfers; i++) {
+    for(int i = 0; i < number_of_transfers; i++) {
       MPI_Recv(&recv_msg, 1, MPI_LONG, 0, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
       MPI_Send(&send_msg, 1, MPI_LONG, 0, tag, MPI_COMM_WORLD);
     }
     long diff = get_current_timestamp() - recv_msg;
-    printf("Transfered msgs: %d\n Total time nanoseconds:  %lu\n avg time: %d\n", number_of_tranfers, diff, diff/number_of_tranfers);
+    printf("Transfered msgs: %d\n Total time nanoseconds:  %lu\n avg time: %lu\n", number_of_transfers*2, diff, diff/(number_of_transfers*2));
   }
   MPI_Finalize();
 }

@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
     }
     long diff = get_current_timestamp() - rcv_msg;
     printf("This is msg received %lu\n", rcv_msg);
-    printf("Transfered msgs: %d\n Total time nanoseconds:  %lu\n avg time: %d\n", number_of_transfers, diff, diff/number_of_transfers);
+    printf("Transfered msgs: %d\n Total time nanoseconds:  %lu\n avg time: %lu\n", number_of_transfers*2, diff, diff/(number_of_transfers*2));
   }
   MPI_Finalize();
 }
