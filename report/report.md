@@ -59,7 +59,13 @@ Po zakończeniu pobierany jest aktualny timestamp, w celu obliczenia wyniku eksp
 
 ### Opóźnienie i komunikacja nieblokująca
 
-Eksperyment analogiczny do poprzedniego
+Eksperyment analogiczny do poprzedniego.
+Zasadniczna różnica polega na sposobie przesyłania danych.
+Pierwsza z instancji wysyła nieblokująco dane, a następnie nieblokująco oczekuje na wiadomość zwrotną.
+Druga odwrotnie - nieblokująca oczekuje na dane, a następnie nieblokująco odsyła wiadomość zwrotną.
+Następnie następuje synchronizacja - obie instancje oczekują na potwierdzenie wiadomości poprzez wywołanie funkcji `MPI_Waitall(3)` ( [code](https://github.com/bszaf/tpr/blob/master/async_short_msg.c#L60) )
+
+Po przesłaniu wszystkich wiadomości, pobierany jest aktualny timestamp, w celu obliczenia średniego opóźnienia na jedną wiadomość.
 
 Infrastruktura
 ---
@@ -86,7 +92,7 @@ Druga to:
  - CentOS Linux release 7.4.1708 (Core)
  - kernel 3.10.0-693.17.1.el7.x86_64
 
-Pierwszy fizyczny host wirtualizuje 3 pierwsze maszyny.
+Pierwszy fizyczny host wirtualizuje 3 maszyny pierwszego typu.
 Drugi fizyczny host wirtualizuje 1 maszynę pierwszego typu i 8 drugiego.
 
 Maszyny wirtualne raportują interfejs sieciowy z linkiem `10 000Mb/s`, jednak nie można mieć pewności, czy rzeczywiście jest to wiarygodna przepustowość.
@@ -121,12 +127,16 @@ Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
 Każdy z eksperymentów został wykonany 100 razy.
 Miało to na celu zminimalizowanie wpływu innych czynników na wyniki.
 
-| Rodzaj komunikacji | Sposób wymiany danych | Średnia `[ns]` | Minimum `[ns]` | Maximum `[ns]` | Ilość Prób |
-| ------------------ | --------------------- | -------------- | -------------- | -------------- | ---------- |
-| blokująca          | pamięć współdzielona  | 685,33         | 628            | 1013           | 100        |
-| nieblokująca       | pamięć współdzielona  | 493,61         | 461            | 719            | 100        |
-| blokująca          | sieć                  | 34085,63       | 31285          | 39010          | 100        |
-| nieblokująca       | sieć                  | 24614,82       | 23173          | 25809          | 100        |
+| Lokalizacja       | Rodzaj komunikacji | Sposób wymiany danych | Średnia `[ns]` | Minimum `[ns]` | Maximum `[ns]` | Ilość Prób |
+| ----------------- | ------------------ | --------------------- | --------------:| --------------:| --------------:| ---------- |
+| 1 node            | blokująca          | pamięć współdzielona  | 685,33         | 628            | 1013           | 100        |
+| 1 node            | nieblokująca       | pamięć współdzielona  | 493,61         | 461            | 719            | 100        |
+| 1 node            | blokująca          | sieć                  | 34085,63       | 31285          | 39010          | 100        |
+| 1 node            | nieblokująca       | sieć                  | 24614,82       | 23173          | 25809          | 100        |
+| 2 node, 1 host    | blokująca          | sieć                  | 128850,35      | 103440         | 177850         | 100        |
+| 2 node, 1 host    | nieblokująca       | sieć                  | 84202,80       | 64631          | 142019         | 100        |
+| 2 node, 2 host    | blokująca          | sieć                  |                |                |                | 100        |
+| 2 node, 2 host    | nieblokująca       | sieć                  |                |                |                | 100        |
 
 Wnioski i podsumowanie
 ---
