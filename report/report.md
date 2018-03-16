@@ -121,6 +121,25 @@ Każdy z eksperymentów został wykonany 8 razy.
 Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
 ![same_node_tcp_async](imgs/same_node_tcp_async.png)
 
+Każdy z eksperymentów został wykonany 8 razy.
+Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
+### Przepustowość i komunikacja blokująca - przez sieć, dwa node'y, jeden host
+![different_node_tcp_sync](imgs/different_node_tcp_sync.png)
+
+Każdy z eksperymentów został wykonany 8 razy.
+Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
+### Przepustowość i komunikacja nieblokująca - przez sieć, dwa node'y, jeden host
+![different_node_tcp_sync](imgs/different_node_tcp_async.png)
+
+Każdy z eksperymentów został wykonany 8 razy.
+Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
+### Przepustowość i komunikacja blokująca - przez sieć, dwa node'y, dwa hosty
+![different_node_tcp_sync](imgs/different_host_tcp_sync.png)
+
+Każdy z eksperymentów został wykonany 8 razy.
+Na wykresie zaznaczono maksymalną, średnią oraz minimalną wartość.
+### Przepustowość i komunikacja nieblokująca - przez sieć, dwa node'y, dwa hosty
+![different_node_tcp_sync](imgs/different_host_tcp_async.png)
 
 ### Opóźnienie
 
@@ -135,8 +154,8 @@ Miało to na celu zminimalizowanie wpływu innych czynników na wyniki.
 | 1 node            | nieblokująca       | sieć                  | 24614,82       | 23173          | 25809          | 100        |
 | 2 node, 1 host    | blokująca          | sieć                  | 128850,35      | 103440         | 177850         | 100        |
 | 2 node, 1 host    | nieblokująca       | sieć                  | 84202,80       | 64631          | 142019         | 100        |
-| 2 node, 2 host    | blokująca          | sieć                  |                |                |                | 100        |
-| 2 node, 2 host    | nieblokująca       | sieć                  |                |                |                | 100        |
+| 2 node, 2 host    | blokująca          | sieć                  | 183122,74      | 159778         | 248607         | 100        |
+| 2 node, 2 host    | nieblokująca       | sieć                  | 164388,73      | 150473         | 188462         | 100        |
 
 Wnioski i podsumowanie
 ---
@@ -146,5 +165,8 @@ Wnioski i podsumowanie
    Wraz ze wzrostem rozmiaru danych wydajność ulega poprawie.
  - W przypadku większych porcji danych, w komunikacji wykorzystującej pamięć współdzieloną, można zaobserować duże fluktuacje.
    Może to wynikać z osiągnięcia "limitu" przepustowości, wyznaczonego przez architekturę MPI i inne czynniki niezależne (np. scheduler systemowy).
- - Komunikacja nieblokująca pozwala na osiągnięcie nieznacznie większej przepustowości.
+ - Komunikacja nieblokująca pozwala na osiągnięcie nieznacznie większej przepustowości  w przypadku komuniakcji za pomocą pamięciu współdzielonej.
  - Komunikacja nieblokująca umożliwa wyraźnie szybsze przesyłanie wiadomości o małym rozmiarze.
+ - Komunikacja przy użyciu interfejsu sieciowego loopback jest wyraźnie wolniejsza od komunikacji przy wykorzystaniu pamięci współdzielonej.
+ - Podczas komunikacji przez sieć pomiędzy dwoma node'ami przepustowość komunikacji nieblokującej okazała się wyraźnie wydajniejsza.
+   Efekt występuje zarówno dla jednego node'a (komunikacja przez loopback), jak i różnych node'ów (w obrębie jednego hosta fizycznego i w obrębie dwóch różnych)
