@@ -153,7 +153,7 @@ int main(int argc, char *argv[]) {
 
     end_time = omp_get_wtime();
     DO_IF_DEBUG(print_table(target_table, table_size));
-    printf("Work took %f sec. time.\n", end_time-start_time);
+    printf("%d,%d,%d,%f\n",num_threads, table_size, buckets_no, end_time-start_time);
 
     return 0;
 }
