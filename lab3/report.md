@@ -96,5 +96,19 @@ Procesor na którym przeprowadzane były obliczenia:
 Wyniki
 ---
 
+Zebrane dane dostępne są w pliku [data/result.csv](data/result.csv). Na ich
+podstawie zostały wygenerowana seria wykresów, która ułatwia interpretację
+danych (skrypt `parse_and_plot.py`). Poniżej znajdują się odnośniki do
+wykresów:
+
+|   Rozmiar   | Skalowane | Czas | Speedup | Efficiency | Serial Fraction |
+|------------:|-----------|------|---------|------------|-----------------|
+| 1 000 000   | Tak | [link [1]](imgs/size_1000000_scaled_True_time.png) | [link [2]](imgs/size_1000000_scaled_True_speedup.png) | [link [3]](imgs/size_1000000_scaled_True_efficiency.png)  | [link [4]](imgs/size_1000000_scaled_True_serial_fraction.png) |
+| 10 000 000  | Tak | [link [5]](imgs/size_10000000_scaled_True_time.png) | [link [6]](imgs/size_10000000_scaled_True_speedup.png) | [link [7]](imgs/size_10000000_scaled_True_efficiency.png)  | [link [8]](imgs/size_10000000_scaled_True_serial_fraction.png) |
+| 100 000 000 | Tak | [link [9]](imgs/size_100000000_scaled_True_time.png) | [link [10]](imgs/size_100000000_scaled_True_speedup.png) | [link [11]](imgs/size_100000000_scaled_True_efficiency.png)  | [link [12]](imgs/size_100000000_scaled_True_serial_fraction.png) |
+| 1 000 000   | Nie | [link [13]](imgs/size_1000000_scaled_False_time.png) | [link [14]](imgs/size_1000000_scaled_False_speedup.png) | [link [15]](imgs/size_1000000_scaled_False_efficiency.png)  | [link [16]](imgs/size_1000000_scaled_False_serial_fraction.png) |
+| 10 000 000  | Nie | [link [17]](imgs/size_10000000_scaled_False_time.png) | [link [18]](imgs/size_10000000_scaled_False_speedup.png) | [link [19]](imgs/size_10000000_scaled_False_efficiency.png)  | [link [20]](imgs/size_10000000_scaled_False_serial_fraction.png) |
+| 100 000 000 | Nie | [link [21]](imgs/size_100000000_scaled_False_time.png) | [link [22]](imgs/size_100000000_scaled_False_speedup.png) | [link [23]](imgs/size_100000000_scaled_False_efficiency.png)  | [link [24]](imgs/size_100000000_scaled_False_serial_fraction.png) |
+
 Wnioski i podsumowanie
 ---
