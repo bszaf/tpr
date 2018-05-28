@@ -102,7 +102,7 @@ for size in available_sizes:
             {
                 "id"       : figure,
                 "title"    : "Time\n {}, Size = {:,}".format(scaled_str, size),
-                "ylabel"   : "Metric Value",
+                "ylabel"   : "Metric Value [seconds]",
                 "xlabel"   : "Number of CPUs",
                 "filename" : "size_{}_scaled_{}_time.png".format(size, scaled)
              },
