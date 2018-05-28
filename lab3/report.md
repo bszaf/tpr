@@ -112,3 +112,21 @@ wykresów:
 
 Wnioski i podsumowanie
 ---
+
+ - Złożoność obliczeniową implementacji można oszacować na `O(n)`, co
+   można stwierdzić na podstawie pomiaru czasu dla takich samych parametrów
+   eksperymentu, dla różnych rozmiarów problemu (np. dla jednego wątku,
+   dla 10 kubełków, przy 10-krotnym zwiększaniu rozmiaru problemu - sortowanie
+   trwało odpowiednio `0,43s`, `4,81s`, `55s`, co daje wzrost  `11,19` i `11,43` - krotny
+   wzrost czasu rozwiązywania problemu.
+ - Eksperymenty przeprowadzono dla 3 rozmiarów problemów `10^6, 10^7 i 10^8`.
+   Na podstawie wyników, można stwierdzić, że rozmiar problemu `10^6` jest
+   za mały (1,2,13,14).
+ - Problem ten nie jest w pełni możliwy do zrównoleglenia. Możemy to stwierdzić
+   na podstawie [10], gdzie zmierzony punkty układają się w krzywą, która
+   asymptotycznie zmierza do określonej wartości (zaczyna dominować część
+   sekwencyjna problemu).
+ - Eksperymenty przeprowadzono dla następujących rozmiarów kubełków: `1/10`,
+   `1/100`, `1/1000`, `1/10 000`, `1/100 000` całkowitej liczby elementów.
+ - W zależności od rozmiaru kubełka, program w różny sposób się skalował.
+   Najlepiej skalowały się przypadki z większą ilością kubełków (12, 24).
